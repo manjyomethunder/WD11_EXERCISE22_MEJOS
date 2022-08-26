@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 21</title>
+</head>
+<body>
+    <div id="sampleDiv">Sample Content</div>
+    <div style="width: 500px; height: 500px; background-color: yellow;">
+        <button onclick="this.parentNode.style.backgroundColor= 'green'">
+            Click Me!
+        </button>
+    </div>
+    <ul id="sampleList">
+        <li style="transition: 0.5s">Adobo</li>
+        <li id="middleChild">Fried Chicken</li>
+        <li>Spaghetti</li>
+    </ul>
+    <button onclick="sampleFunction();">Trigger Button</button>
+    
+    <hr>
+
+    To Do List Item: <input type="text" id="additionalItem">
+    <button id="addBtn" onclick="addTodoListItem();">Input Item</button>
+    <button id="removeFirstBtn" onclick="removeFirstItem();">Remove First Item</button>
+    <button id="removeLastBtn" onclick="removeLastItem();">Remove Last Item</button>
+
+    <ul id="todoList">
+        <li>Cleaning the basement1<button onclick="this.parentNode.remove()";>x</button></li>
+        <li>Cleaning the basement2<button onclick="this.parentNode.remove()";>x</button></li>
+        <li>Cleaning the basement3<button onclick="this.parentNode.remove()";>x</button></li>
+    </ul>
+
+    <div id="originalCopy">
+        <h1 id="sampleHeading1">Sample Heading 1</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium rem ad dolorem magni perferendis ut suscipit quo quis fuga placeat, consectetur veniam similique aut numquam explicabo facilis ipsa mollitia nisi.</p>
+    </div>
+    <button onclick="copyClone()";>Copy</button>
+
+    <button id="sampleButton">Sample Button</button>
+    
+</body>
+<script>
+    let sample = document.getElementById("sampleDiv");
+    sample.style.backgroundColor = "red";
+    sample.style.color = "yellow";
+    sample.style.fontWeight = "bold";
+
+    function sampleFunction() {
+        let getFirstChild = document.getElementById("sampleList").firstChild.innerHTML;
+        let getFirstElementChild = document.getElementById("sampleList").firstElementChild.innerHTML;
+        let getLastChild = document.getElementById("sampleList").lastChild.innerHTML;
+        let getLastElementChild = document.getElementById("sampleList").lastElementChild.innerHTML;
+        let countChild = document.getElementById("sampleList").childElementCount;
+        let getNextElementSibling = document.getElementById("middleChild").nextElementSibling.innerHTML;
+        let getPreviousElementSibling = (document.getElementById("middleChild").previousElementSibling.style.backgroundColor = "red");
+
+        //alert(getNextElementSibling);
+    }
+    let div = document.createElement("div");
+        div.innerHTML = "<h1>Sample Content</h1>";
+        document.body.appendChild(div);
+        // using createElement inside the Body
+
+    // let todoList = document.getElementById("todoList");
+    // let listItem = document.createElement("li");
+    // listItem.innerHTML = "Sample Item";
+
+    // todoList.appendChild(listItem);
+
+    function addTodoListItem() {
+        let newItem = document.getElementById("additionalItem").value;
+        let todoList = document.getElementById("todoList");
+        let listItem = document.createElement("li");
+
+        listItem.innerHTML = `${newItem} <button onclick="this.parentNode.remove()";>x</button>`;
+        todoList.appendChild(listItem);
+        document.getElementById("additionalItem").value = "";
+    }
+
+    // let todoList = document.getElementById("todoList");
+    // todoList.removeChild(todoList.lastElementChild);
+    // Reference for automatic deleting of Last element
+
+    function removeFirstItem() {
+        let todoList = document.getElementById("todoList");
+        todoList.removeChild(todoList.firstElementChild);
+    }
+
+    function removeLastItem() {
+        let todoList = document.getElementById("todoList");
+        todoList.removeChild(todoList.lastElementChild);
+    }
+
+    // let todoList = document.getElementById("todoList");
+    // let replaceItem = document.createElement("li");
+    // replaceItem.innerHTML = "Using Vacuum";
+    // todoList.replaceChild(replaceItem, todoList.firstElementChild);
+
+    let todoList = document.getElementById("todoList");
+    let replaceItem = document.createElement("li");
+    replaceItem.innerHTML = "Using Vacuum";
+    //todoList.replaceChild(replaceItem, todoList.firstElementChild);
+    // Using replaceChild
+
+    //todoList.insertBefore(replaceItem, todoList.firstElementChild);
+    //todoList.insertBefore(replaceItem, todoList.lastElementChild);
+    // Using insertBefore
+
+    todoList.insertAdjacentHTML("beforebegin", "<h2>Hello World</h2>");
+    // Using insertAdjacentHTML beforebegin - insert the html code before the selected element
+    todoList.insertAdjacentHTML("afterbegin", "<li>Sample Item</li>");
+    // Using insertAdjacentHTML afterbegin - insert the html code after the selected element
+    todoList.insertAdjacentHTML("beforeend", "<li>End of the list</li>");
+    todoList.insertAdjacentHTML("afterend", "<h2>After the list</h2>");
+    // beforeend and afterend insertAdjacentHTML
+    
+    function copyClone() {
+    let selectHeading = document.getElementById("originalCopy");
+    let copyElement = selectHeading.cloneNode(true);
+    document.body.appendChild(copyElement);
+    }
+    // Using cloneNode in a function onclick button
+
+    let selectHeading1 = document.getElementById("sampleHeading1")
+    alert(sampleHeading1.textContent);
+
+    let sampleBtn = document.getElementById("sampleButton");
+    // sampleBtn.addEventListener("click", sampleFunction);
+    // function sampleFunction(){
+    // alert("");
+    // }
+    // Using addEventListener
+    
+    sampleBtn.addEventListener("click", function(){
+        alert("testing");
+    });
+    // Using addEventListener
+
+</script>
+</html>
