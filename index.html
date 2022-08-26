@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 22</title>
+    <style>
+        .sampleClass {
+            color: red;
+        }
+        .sampleClass4 {
+            background-color: yellow;
+            border: solid black 3px;
+        }
+        .button-container {
+            width: 100%;
+            padding: 20px 0px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .button-container button {
+            margin-left: 5px;
+        }
+        .curve-button {
+            background: none;
+            border: none;
+            border: 2px solid #3ab8f1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #3ab8f1;
+            font-weight: bold;
+        }
+        .curve-button:hover {
+            background-color: #3ab8f1;
+            color: #fff;
+
+        }
+        .button-active {
+            background-color: #3ab8f1;
+            color: #fff;
+        }
+        .hidden {
+            display: none;
+        }
+        .show {
+            display: block !important;
+
+        }
+    </style>
+</head>
+<body>
+    <button id="sampleBtn">Click Me</button>
+    <h1 class="sampleClass sampleClass2 sampleClass3 sampleClass4" id="sampleHeading">Sample Heading</h1>
+    <a id="sampleLink" href="https://facebook.com">Sample Link</a>
+    <div class="button-container">
+        <button class="curve-button" id="One" onclick="selectBtn()">
+            Sample Button 1
+        </button>
+        <button class="curve-button" id="Two" onclick="selectBtn()">
+            Sample Button 2
+        </button>
+        <button class="curve-button" id="Three" onclick="selectBtn()">
+            Sample Button 3
+        </button>
+    </div>
+    <div style="width: 100%; text-align: center">
+        <h1 class="hidden" id="sample-One">Sample Heading 1</h1>
+        <h1 class="hidden" id="sample-Two">Sample Heading 2</h1>
+        <h1 class="hidden" id="sample-Three">Sample Heading 3</h1>
+    </div>
+
+</body>
+<script>
+    function selectBtn() {
+        let buttons = document.querySelectorAll(".curve-button");
+        for (let index = 0; index < buttons.length; index++) {
+            buttons[index].classList.remove("button-active");
+        }
+        event.target.classList.add("button-active");
+        let id = event.target.getAttribute("id");
+        showText(id);
+        
+    }
+    function showText(id) {
+        let headings = document.querySelectorAll(".hidden");
+        for (let index = 0; index < headings.length; index++) {
+            headings[index].classList.remove("show");
+        }
+        let showElement = document.getElementById("sample-" + id);
+        showElement.classList.add("show");
+    }
+
+    let sampleBtn = document.getElementById("sampleBtn");
+    sampleBtn.setAttribute("disabled", "");
+    // Using setAttribute
+
+    let sampleHeading = document.getElementById("sampleHeading");
+    //sampleHeading.removeAttribute("class");
+    // Using removeAttribute
+    //alert(sampleHeading.classList);
+    // Using CSS classList
+    sampleHeading.classList.add("sampleClass4");
+    // Using CSS add classes
+    sampleHeading.classList.remove("sampleClass");
+
+
+    let sampleLink = document.getElementById("sampleLink");
+    //alert(sampleLink.getAttribute("href"));
+    // Using getAttribute
+
+</script>
+</html>
